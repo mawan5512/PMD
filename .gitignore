@@ -1,0 +1,17 @@
+# Gradle
+.gradle/
+build/
+
+# IntelliJ IDEA
+.idea/
+*.ipr
+*.iws
+
+# Eclipse
+bin/
+.classpath
+.project
+.settings
+
+# Mac OS X
+**/.DS_Store
