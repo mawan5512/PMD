@@ -5,9 +5,17 @@
 ### Checking out into IntelliJ IDEA:
 1. Install Git.
 2. Copy Git URL from this GitHub page.
-3. Navigate to where you want your local repo and run `git clone URL`.
+3. Navigate to where you want your local repo and run `git clone URL`. Project root is PMD folder.
 4. Start IntelliJ IDEA. Select `Import Project`.
 5. Navigate to where you cloned the repo and select the project root folder.
 6. Select Gradle for the external model.
 7. Check `Create directory for empty content roots automatically` and a JVM for Gradle.
 8. If IntelliJ does not ask to register VCS root, taskbar > VCS > Enable Version Control Integeration > Git > OK
+
+### Checkout out into Eclipse:
+1. Install Git.
+2. Copy Git URL from this GitHub page.
+3. Navigate to where you want your local repo and run `git clone URL`. Project root is PMD folder.
+4. Start Eclipse. Select a workspace.
+5. File > Import.. > Gradle > Gradle Project
+6. Navigate to where you cloned the repo and select the project root folder.
