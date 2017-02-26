@@ -103,9 +103,9 @@ public class OmdbArgumentType <V> {
     private final Function<V, String> toString;
 
     private OmdbArgumentType(String keyString, Predicate<V> isValidValue, Function<V, String> toString) {
-        this.keyString = Objects.requireNonNull(keyString);
-        this.isValidValue = Objects.requireNonNull(isValidValue);
-        this.toString = Objects.requireNonNull(toString);
+        this.keyString = keyString;
+        this.isValidValue = isValidValue;
+        this.toString = toString;
     }
 
     /**
