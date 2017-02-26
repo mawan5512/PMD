@@ -14,6 +14,8 @@ public final class OmdbArgument <V> {
     OmdbArgument(OmdbArgumentType<V> type, V value) {
         this.type = type;
         this.value = Objects.requireNonNull(value);
+        if (!type.getIsValidValuePredicate().test(value))
+            throw new IllegalArgumentException("value is not valid for this type");
     }
 
     OmdbArgumentType<V> getType() {
