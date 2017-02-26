@@ -14,7 +14,7 @@ public class OmdbUrlBuilder {
 
     private final List<OmdbArgument<?>> args = new ArrayList<>();
     private final static String URI_SCHEME = "https";
-    private final static String URI_AUTHORITY = "omdbapi.com/";
+    private final static String URI_AUTHORITY = "omdbapi.com";
 
     public static URL buildWithArgs(OmdbArgument<?>... args) {
         Objects.requireNonNull(args);
