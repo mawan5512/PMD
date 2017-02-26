@@ -28,3 +28,24 @@
 5. Taskbar > Tools > Plugins > Find and install Gradle Support plugin.
 6. Taskbar > File > Open Project
 7. Navigate to where you cloned the repo and select the project root folder.
+
+### Making changes:
+```
+git checkout master
+git pull origin master       # Update local master branch to reflect latest changes on remote master branch
+git branch branch-name       # Create feature branch based off master
+git checkout branch-name     # Switch to feature branch
+edit files                   # Make changes to files
+git commit -a                # Commit changes with message describing changes
+git push origin branch-name  # Upload feature branch to remote repo
+```
+
+### Making more changes to existing branch:
+```
+git checkout branch-name     # Switch to feature branch
+edit files                   # Make changes to files
+git commit -a                # Commit changes with message describing changes
+git push origin branch-name  # Upload additional changes to remote repo
+```
+
+All basic Git functionality is present in the IDEs' menus, so you don't need to use the command line.
