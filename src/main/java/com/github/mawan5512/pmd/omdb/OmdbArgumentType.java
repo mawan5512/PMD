@@ -17,13 +17,13 @@ public class OmdbArgumentType <V> {
     public final static OmdbArgumentType<String>        ID
             = new OmdbArgumentType<>(
             "i",
-            id -> true,
+            id -> !id.isEmpty(),
             id -> id);
 
     public final static OmdbArgumentType<String>        TITLE
             = new OmdbArgumentType<>(
             "t",
-            s -> true,
+            s -> !s.isEmpty(),
             s -> s);
 
     public final static OmdbArgumentType<TitleType>     TITLE_TYPE
@@ -59,19 +59,19 @@ public class OmdbArgumentType <V> {
     public final static OmdbArgumentType<String>        JSONP_CALLBACK
             = new OmdbArgumentType<>(
             "callback",
-            callback -> true,
+            callback -> !callback.isEmpty(),
             callback -> callback);
 
     public final static OmdbArgumentType<String>        API_VERSION
             = new OmdbArgumentType<>(
             "v",
-            version -> true,
+            version -> !version.isEmpty(),
             version -> version);
 
     public final static OmdbArgumentType<String>        TITLE_SEARCH
             = new OmdbArgumentType<>(
             "s",
-            value -> true,
+            value -> !value.isEmpty(),
             s -> s);
 
     public final static OmdbArgumentType<Integer>       PAGE
