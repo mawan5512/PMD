@@ -23,6 +23,7 @@ public class OmdbMovieSearcher {
      * @return movie info from the search result if there is a result or no movie info otherwise
      * @throws IOException if an IO error occurs
      * @throws SocketTimeoutException after default timeout milliseconds have passed since connection attempt
+     * @throws IllegalArgumentException if a TITLE_SEARCH or PAGE argument is provided
      */
     public Optional<MovieInfo> search(OmdbArgument<?>... args) throws IOException {
         return search(defaultTimeout, args);
@@ -36,6 +37,7 @@ public class OmdbMovieSearcher {
      * @return movie info from the search result if there is a result or no movie info otherwise
      * @throws IOException if an IO error occurs
      * @throws SocketTimeoutException after timeout milliseconds have passed since connection attempt
+     * @throws IllegalArgumentException if a TITLE_SEARCH or PAGE argument is provided
      */
     public Optional<MovieInfo> search(int timeout, OmdbArgument<?>... args) throws IOException {
         Objects.requireNonNull(args);
