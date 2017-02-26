@@ -2,7 +2,7 @@ package com.github.mawan5512.pmd.omdb;
 
 public enum DetailType {
 
-    LONG("long"), SHORT("short");
+    FULL("full"), SHORT("short");
 
     private final String value;
 
