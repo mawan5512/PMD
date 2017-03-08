@@ -22,8 +22,7 @@ public class PMD {
 
     public static void main(String[] args) {
         PMD pmd = new PMD();
-        try {
-            Scanner in = new Scanner(System.in);
+        try (Scanner in = new Scanner(System.in)) {
             System.out.println("Enter title:");
             String title = in.nextLine();
             int year = getInteger(in, System.out, "Enter year:", "Year must be an integer.");
