@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
 
-public class WebScrape {
+public class WebScraper {
 
     public static Object getInfo (String U) {
 
