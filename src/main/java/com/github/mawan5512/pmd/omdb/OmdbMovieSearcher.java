@@ -48,11 +48,7 @@ public class OmdbMovieSearcher {
         URLConnection connection = url.openConnection();
         connection.setConnectTimeout(timeout);
         connection.setReadTimeout(timeout);
-
-        //get InputStream, do parsing
-        //return empty Optional if json is incomplete (because no movie was found fitting the particular criteria)
-        //return Optional with MovieInfo if json is complete
-        return Optional.empty();
+        return WebScraper.getInfo(connection);
     }
 
     private static void ensureDoesNotContain(OmdbArgumentType<?> arg, OmdbArgument<?>... args) {
