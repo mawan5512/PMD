@@ -2,59 +2,59 @@ package com.github.mawan5512.pmd.omdb;
 
 public class MovieInfo {
 
-    String Title;
-    String Year;
-    String Genre;
-    String Runtime;
-    String Director;
-    String Actors;
-    String Summary;
-    String Release;
-    String PicUrl;
-    String ID;
+    private final String Title;
+    private final String Year;
+    private final String Genre;
+    private final String Runtime;
+    private final String Director;
+    private final String Actors;
+    private final String Summary;
+    private final String Release;
+    private final String PicUrl;
+    private final String ID;
 
-    MovieInfo(String title,String year,String genre,String runtime,String director,String actors, String summary, String release,String picUrl, String id ){
-        String Title = title;
-        String Year = year;
-        String Genre = genre;
-        String Runtime = runtime;
-        String Director = director;
-        String Actors = actors;
-        String Summary = summary;
-        String Release = release;
-        String PicUrl = picUrl;
-        String ID = id;
+    public MovieInfo(String title,String year,String genre,String runtime,String director,String actors, String summary, String release,String picUrl, String id ){
+        Title = title;
+        Year = year;
+        Genre = genre;
+        Runtime = runtime;
+        Director = director;
+        Actors = actors;
+        Summary = summary;
+        Release = release;
+        PicUrl = picUrl;
+        ID = id;
     }
 
-    String getTitle() {
+    public String getTitle() {
         return Title;
     }
 
-    String getYear() {
+    public String getYear() {
         return Year;
     }
 
-    String getGenre() {
+    public String getGenre() {
         return Genre;
     }
-    String getRuntime(){
+    public String getRuntime(){
         return Runtime;
     }
-    String getDirector(){
+    public String getDirector(){
         return Director;
     }
-    String getActors(){
+    public String getActors(){
         return Actors;
     }
-    String getSummary(){
+    public String getSummary(){
         return Summary;
     }
-    String getRelease(){
+    public String getRelease(){
         return Release;
     }
-    String getPicUrl(){
+    public String getPicUrl(){
         return PicUrl;
     }
-    String getID(){return ID;}
+    public String getID(){return ID;}
 
 }
