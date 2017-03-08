@@ -84,7 +84,7 @@ public class WebScraper {
         String ID = "";
         while (Parse.hasNext()) {
             if (Parse.next().contains("imdbID")) {
-                ID = Parse.next() + " and "+ Parse.next();
+                ID = Parse.next();
                 return ID;
             }
         }
