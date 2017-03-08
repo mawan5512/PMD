@@ -89,7 +89,7 @@ public class OmdbUrlBuilder {
     }
 
     private boolean isNotMoreThanOne(OmdbArgumentType<?> type) {
-        return args.stream().count() <= 1;
+        return args.stream().filter(arg -> arg.getType().equals(type)).count() <= 1;
     }
 
     private boolean doesNotHaveTitleOrId() {
