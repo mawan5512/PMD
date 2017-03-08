@@ -1,6 +1,12 @@
 package com.github.mawan5512.pmd;
 
+import com.github.mawan5512.pmd.omdb.MovieInfo;
+import com.github.mawan5512.pmd.omdb.OmdbArgumentType;
 import com.github.mawan5512.pmd.omdb.OmdbMovieSearcher;
+
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Scanner;
 
 public class PMD {
 
@@ -16,6 +22,44 @@ public class PMD {
 
     public static void main(String[] args) {
         PMD pmd = new PMD();
+        try {
+            Scanner in = new Scanner(System.in);
+            System.out.println("Enter title:");
+            String title = in.nextLine();
+            int year = getInteger(in, System.out, "Enter year:", "Year must be an integer.");
+
+            MovieInfo info = pmd.getOmdbMovieSearcher().search(
+                    OmdbArgumentType.TITLE.withValue(title),
+                    OmdbArgumentType.YEAR.withValue(year))
+                    .get(); // throws an exception if optional is empty, but, currently, it never is
+            System.out.println(info.getActors());
+            System.out.println(info.getDirector());
+            System.out.println(info.getGenre());
+            System.out.println(info.getID());
+            System.out.println(info.getPicUrl());
+            System.out.println(info.getRelease());
+            System.out.println(info.getRuntime());
+            System.out.println(info.getSummary());
+            System.out.println(info.getTitle());
+            System.out.println(info.getYear());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Asks the user for an integer, through in and out, until an integer is
+     * provided.
+     */
+    private static int getInteger(Scanner in, PrintStream out, String enterMsg, String errorMsg) {
+        while (true) {
+            out.println(enterMsg);
+            try {
+                return Integer.parseInt(in.nextLine());
+            } catch (NumberFormatException e) {
+                out.println(errorMsg);
+            }
+        }
     }
 
 }
