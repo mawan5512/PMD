@@ -21,10 +21,6 @@ public class WebScraper {
             String change1 = change.replace("{", "");
             String change2 = change1.replace("}", "");
             String change3 = change2.replace(":", ",");
-            System.out.print("\n" + Title(change3) + "\n" + Year(change3) + "\n" + Genre(change3)
-                    + "\n" + Runtime(change3) + "\n" + Director(change3) + "\n" + Actors(change3) + "\n" + Release(change3) +
-                    "\n" + Poster(change3));
-            System.out.print("\n" + Summary(change3));
             MovieInfo movie = new MovieInfo(Title(change3), Year(change3), Genre(change3)
                     , Runtime(change3), Director(change3), Actors(change3), Summary(change3), Release(change3), Poster(change3), ID(change3));
             return Optional.of(movie);
