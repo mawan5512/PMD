@@ -24,6 +24,7 @@ public class WebScraper {
             MovieInfo movie = new MovieInfo(Title(change3), Year(change3), Genre(change3)
                     , Runtime(change3), Director(change3), Actors(change3), Summary(change3), Release(change3), Poster(change3), ID(change3));
             return Optional.of(movie);
+            //TODO: Return Optional.empty() when OMDb doesn't return a movie
         }
     }
     public static String Title (String x) {
