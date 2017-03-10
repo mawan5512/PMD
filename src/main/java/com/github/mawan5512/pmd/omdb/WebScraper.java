@@ -1,23 +1,13 @@
 package com.github.mawan5512.pmd.omdb;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URLConnection;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class WebScraper {
 
-    public static Optional<MovieInfo> getInfo (URLConnection connection) throws IOException {
-
-        int c;
-        try (InputStream in = connection.getInputStream()) {
-            String Storage = "";
-            while ((c = in.read()) != -1) {
-                Storage = Storage + (char) c;
-            }
-            in.close();
-            String change = Storage.replace("\"", "");
+    public static Optional<MovieInfo> getInfo (String jsonText) throws IOException {
+            String change = jsonText.replace("\"", "");
             String change1 = change.replace("{", "");
             String change2 = change1.replace("}", "");
             String change3 = change2.replace(":", ",");
@@ -25,7 +15,6 @@ public class WebScraper {
                     , Runtime(change3), Director(change3), Actors(change3), Summary(change3), Release(change3), Poster(change3), ID(change3));
             return Optional.of(movie);
             //TODO: Return Optional.empty() when OMDb doesn't return a movie
-        }
     }
     public static String Title (String x) {
         Scanner Parse = new Scanner(x).useDelimiter(",");
