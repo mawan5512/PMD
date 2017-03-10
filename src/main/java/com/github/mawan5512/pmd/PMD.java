@@ -3,6 +3,7 @@ package com.github.mawan5512.pmd;
 import com.github.mawan5512.pmd.omdb.MovieInfo;
 import com.github.mawan5512.pmd.omdb.OmdbArgumentType;
 import com.github.mawan5512.pmd.omdb.OmdbMovieSearcher;
+import com.github.mawan5512.pmd.omdb.RealUrlReader;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -13,7 +14,7 @@ public class PMD {
     private final OmdbMovieSearcher searcher;
 
     private PMD() {
-        searcher = new OmdbMovieSearcher(0);
+        searcher = new OmdbMovieSearcher(new RealUrlReader("UTF-8"), 0);
     }
 
     public OmdbMovieSearcher getOmdbMovieSearcher() {

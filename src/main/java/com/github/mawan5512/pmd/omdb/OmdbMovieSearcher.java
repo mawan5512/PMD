@@ -5,15 +5,16 @@ import static com.github.mawan5512.pmd.omdb.OmdbArgumentType.*;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Objects;
 import java.util.Optional;
 
 public class OmdbMovieSearcher {
 
+    private final UrlReader reader;
     private final int defaultTimeout;
 
-    public OmdbMovieSearcher(int defaultTimeout) {
+    public OmdbMovieSearcher(UrlReader reader, int defaultTimeout) {
+        this.reader = reader;
         this.defaultTimeout = defaultTimeout;
     }
 
@@ -45,10 +46,8 @@ public class OmdbMovieSearcher {
         ensureDoesNotContain(PAGE, args);
 
         URL url = OmdbUrlBuilder.buildWithArgs(args);
-        URLConnection connection = url.openConnection();
-        connection.setConnectTimeout(timeout);
-        connection.setReadTimeout(timeout);
-        return WebScraper.getInfo(connection);
+        String jsonText = reader.getResponse(url, timeout);
+        return WebScraper.getInfo(jsonText);
     }
 
     private static void ensureDoesNotContain(OmdbArgumentType<?> arg, OmdbArgument<?>... args) {

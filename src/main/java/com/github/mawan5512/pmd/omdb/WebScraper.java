@@ -1,32 +1,41 @@
 package com.github.mawan5512.pmd.omdb;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URLConnection;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class WebScraper {
 
-    public static Optional<MovieInfo> getInfo (URLConnection connection) throws IOException {
-
-        int c;
-        try (InputStream in = connection.getInputStream()) {
-            String Storage = "";
-            while ((c = in.read()) != -1) {
-                Storage = Storage + (char) c;
-            }
-            in.close();
-            String change = Storage.replace("\"", "");
+    public static Optional<MovieInfo> getInfo (String jsonText) throws IOException {
+            String change = jsonText.replace("\"", "");
             String change1 = change.replace("{", "");
             String change2 = change1.replace("}", "");
             String change3 = change2.replace(":", ",");
+
+            Optional<String> error = getError(change3);
+            if (error.isPresent()) {
+                if (error.get().contains("Movie not found!"))
+                    return Optional.empty();
+                else
+                    throw new OmdbResponseException(error.get());
+            }
+
             MovieInfo movie = new MovieInfo(Title(change3), Year(change3), Genre(change3)
                     , Runtime(change3), Director(change3), Actors(change3), Summary(change3), Release(change3), Poster(change3), ID(change3));
             return Optional.of(movie);
-            //TODO: Return Optional.empty() when OMDb doesn't return a movie
-        }
     }
+
+    public static Optional<String> getError(String x) {
+        Scanner Parse = new Scanner(x).useDelimiter(",");
+        while (Parse.hasNext()) {
+            if (Parse.next().contains("Error")) {
+                return Optional.of(Parse.next());
+            }
+        }
+
+        return Optional.empty();
+    }
+
     public static String Title (String x) {
         Scanner Parse = new Scanner(x).useDelimiter(",");
         String Title = "";
