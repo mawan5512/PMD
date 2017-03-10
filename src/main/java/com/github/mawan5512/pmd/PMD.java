@@ -7,6 +7,7 @@ import com.github.mawan5512.pmd.omdb.RealUrlReader;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class PMD {
@@ -28,20 +29,25 @@ public class PMD {
             String title = in.nextLine();
             int year = getInteger(in, System.out, "Enter year:", "Year must be an integer.");
 
-            MovieInfo info = pmd.getOmdbMovieSearcher().search(
+            Optional<MovieInfo> optionalInfo = pmd.getOmdbMovieSearcher().search(
                     OmdbArgumentType.TITLE.withValue(title),
-                    OmdbArgumentType.YEAR.withValue(year))
-                    .get(); // throws an exception if optional is empty, but, currently, it never is
-            System.out.println(info.getActors());
-            System.out.println(info.getDirector());
-            System.out.println(info.getGenre());
-            System.out.println(info.getID());
-            System.out.println(info.getPicUrl());
-            System.out.println(info.getRelease());
-            System.out.println(info.getRuntime());
-            System.out.println(info.getSummary());
-            System.out.println(info.getTitle());
-            System.out.println(info.getYear());
+                    OmdbArgumentType.YEAR.withValue(year));
+
+            if (!optionalInfo.isPresent()) {
+                System.out.println("Movie not found!");
+            } else {
+                MovieInfo info = optionalInfo.get();
+                System.out.println(info.getActors());
+                System.out.println(info.getDirector());
+                System.out.println(info.getGenre());
+                System.out.println(info.getID());
+                System.out.println(info.getPicUrl());
+                System.out.println(info.getRelease());
+                System.out.println(info.getRuntime());
+                System.out.println(info.getSummary());
+                System.out.println(info.getTitle());
+                System.out.println(info.getYear());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
