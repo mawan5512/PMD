@@ -27,7 +27,7 @@ public class PMD {
         try (Scanner in = new Scanner(System.in)) {
             System.out.println("Enter title:");
             String title = in.nextLine();
-            int year = getInteger(in, System.out, "Enter year:", "Year must be an integer.");
+            int year = getPositiveInteger(in, System.out, "Enter year:", "Year must be a positive integer.");
 
             Optional<MovieInfo> optionalInfo = pmd.getOmdbMovieSearcher().search(
                     OmdbArgumentType.TITLE.withValue(title),
@@ -57,11 +57,15 @@ public class PMD {
      * Asks the user for an integer, through in and out, until an integer is
      * provided.
      */
-    private static int getInteger(Scanner in, PrintStream out, String enterMsg, String errorMsg) {
+    private static int getPositiveInteger(Scanner in, PrintStream out, String enterMsg, String errorMsg) {
         while (true) {
             out.println(enterMsg);
             try {
-                return Integer.parseInt(in.nextLine());
+                int i = Integer.parseInt(in.nextLine());
+                if (i <= 0)
+                    out.println(errorMsg);
+                else
+                    return i;
             } catch (NumberFormatException e) {
                 out.println(errorMsg);
             }
