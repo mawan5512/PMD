@@ -3,7 +3,9 @@ package com.github.mawan5512.pmd.omdb;
 import java.util.Objects;
 
 /**
- * Represents a key-value pair to be supplied in the query portion of the URL to OMDb.
+ * An option that can be included in a query to OMDb, complete with a key and
+ * value.
+ *
  * @param <V> The type of the value in the key-value pair
  */
 public final class OmdbArgument <V> {

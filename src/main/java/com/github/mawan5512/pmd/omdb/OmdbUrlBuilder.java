@@ -10,12 +10,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * A builder of {@code URL}s for querying OMDb.
+ */
 public class OmdbUrlBuilder {
 
     private final List<OmdbArgument<?>> args = new ArrayList<>();
     private final static String URI_SCHEME = "https";
     private final static String URI_AUTHORITY = "omdbapi.com";
 
+    /**
+     * Builds a URL for querying OMDb with the provided options.
+     *
+     * @param args An array of options to be included in the query
+     * @return The built URL
+     * @throws IllegalArgumentException If a criteria is not met as indicated
+     * for the constants in OmdbArgumentType, an option other than TITLE_SEARCH
+     * appears more than once, or no ID, TITLE, or TITLE_SEARCH is given
+     * @throws NullPointerException If args is null or any element of args is
+     * null
+     */
     public static URL buildWithArgs(OmdbArgument<?>... args) {
         Objects.requireNonNull(args);
         OmdbUrlBuilder builder = new OmdbUrlBuilder();
@@ -24,13 +38,31 @@ public class OmdbUrlBuilder {
         return builder.build();
     }
 
+    /**
+     * Constructs a builder with no initial options.
+     */
     public OmdbUrlBuilder() {}
 
+    /**
+     * Adds an argument to this builder.
+     *
+     * @param arg The argument to be added to the query
+     * @return This OmdbUrlBuilder
+     * @throws NullPointerException If arg is null
+     */
     public OmdbUrlBuilder withArg(OmdbArgument<?> arg) {
         args.add(Objects.requireNonNull(arg));
         return this;
     }
 
+    /**
+     * Builds a URL for querying OMDb with the given options.
+     *
+     * @return The built URL
+     * @throws IllegalArgumentException If a criteria is not met as indicated
+     * for the constants in OmdbArgumentType, an option other than TITLE_SEARCH
+     * appears more than once, or no ID, TITLE, or TITLE_SEARCH is given
+     */
     public URL build() {
         checkArgs();
 
