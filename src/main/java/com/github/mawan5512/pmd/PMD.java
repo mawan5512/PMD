@@ -1,5 +1,7 @@
 package com.github.mawan5512.pmd;
 
+import com.github.mawan5512.pmd.database.Add;
+import com.github.mawan5512.pmd.omdb.MovieInfo;
 import com.github.mawan5512.pmd.omdb.OmdbMovieSearcher;
 import com.github.mawan5512.pmd.omdb.RealUrlReader;
 
@@ -9,6 +11,10 @@ public class PMD {
 
     private PMD() {
         searcher = new OmdbMovieSearcher(new RealUrlReader("UTF-8"), 0);
+    }
+
+    public void addToLibrary(MovieInfo info) {
+        Add.Add(info.getTitle(), info.getYear(), info.getRuntime(), info.getGenre(), info.getDirector(), info.getActors(), info.getSummary());
     }
 
     public OmdbMovieSearcher getOmdbMovieSearcher() {
