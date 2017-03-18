@@ -78,7 +78,11 @@ public class HomePanel extends JPanel {
 
 
 
-        p4.add(imageOnButton(d3, "https://images-na.ssl-images-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg"));
+        d3 = imageOnButton(d3, "https://images-na.ssl-images-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg");
+        p4.add(d3);
+        // LibraryPanel.movieDetails(d3, "https://images-na.ssl-images-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg");
+//p4.add(Box.createRigidArea(new Dimension(200, 200)));
+        p4.setBackground(Color.RED);
         p4.add(imageOnButton(d2, "https://images-na.ssl-images-amazon.com/images/M/MV5BMTYwNjAyODIyMF5BMl5BanBnXkFtZTYwNDMwMDk2._V1_SX300.jpg"));
         p4.add(imageOnButton(d3, "https://images-na.ssl-images-amazon.com/images/M/MV5BOWU0ZGE4YjMtNmY5Yy00M2RhLWE0ZGQtZjViMTBhZTE5MWM4XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_SX300.jpg"));
         p4.add(imageOnButton(d4, "https://images-na.ssl-images-amazon.com/images/M/MV5BMTU5MDg0NTQ1N15BMl5BanBnXkFtZTcwMjA4Mjg3Mg@@._V1_SX300.jpg"));
@@ -88,10 +92,10 @@ public class HomePanel extends JPanel {
 
         JPanel p5 = new JPanel();
         p5.setLayout(new BoxLayout(p5,BoxLayout.Y_AXIS));
-        p5.setBackground(Color.RED);
+        p5.setBackground(Color.gray);
         p5.add(Box.createRigidArea(new Dimension(0, 10)));
         p5.add(p1);
-        p5.add(Box.createRigidArea(new Dimension(0, 80)));
+        p5.add(Box.createRigidArea(new Dimension(0, 150)));
         p5.add(p2);
         p5.add(Box.createRigidArea(new Dimension(0, 50)));
         p5.add(p3);
@@ -119,7 +123,7 @@ public class HomePanel extends JPanel {
             e.printStackTrace();
         }
         //String s = "red";
-        B.setBackground(Color.RED);
+        B.setBackground(Color.gray);
         B.setOpaque(true);
         B.setBorderPainted(false);
         return B;
