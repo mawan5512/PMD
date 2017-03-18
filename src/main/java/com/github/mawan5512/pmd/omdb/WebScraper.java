@@ -61,17 +61,17 @@ public class WebScraper {
         }
         return FinalSum;
     }
-    public static String Year (String x) {
+    public static int Year (String x) {
         Scanner Parse = new Scanner(x).useDelimiter(",");
         String Year = "";
         while (Parse.hasNext()) {
             if (Parse.next().contains("Year")) {
                 Year = Parse.next();
-                return Year;
+                return Integer.parseInt(Year);
             }
         }
 
-        return " ";
+        throw new AssertionError("No year");
     }
     public static String Genre (String x) {
         Scanner Parse = new Scanner(x).useDelimiter(",");
@@ -97,17 +97,17 @@ public class WebScraper {
 
         return " ";
     }
-    public static String Runtime (String x) {
+    public static int Runtime (String x) {
         Scanner Parse = new Scanner(x).useDelimiter(",");
         String Runtime = "";
         while (Parse.hasNext()) {
             if (Parse.next().contains("Runtime")) {
                 Runtime = Parse.next();
-                return Runtime;
+                return Integer.parseInt(Runtime.replace(" min", ""));
             }
         }
 
-        return " ";
+        throw new AssertionError("No runtime");
     }
     public static String Director (String x) {
         Scanner Parse = new Scanner(x).useDelimiter(",");
