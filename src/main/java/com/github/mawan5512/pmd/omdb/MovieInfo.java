@@ -3,9 +3,9 @@ package com.github.mawan5512.pmd.omdb;
 public class MovieInfo {
 
     private final String Title;
-    private final String Year;
+    private final int Year;
     private final String Genre;
-    private final String Runtime;
+    private final int Runtime;
     private final String Director;
     private final String Actors;
     private final String Summary;
@@ -13,7 +13,7 @@ public class MovieInfo {
     private final String PicUrl;
     private final String ID;
 
-    public MovieInfo(String title,String year,String genre,String runtime,String director,String actors, String summary, String release,String picUrl, String id ){
+    public MovieInfo(String title,int year,String genre,int runtime,String director,String actors, String summary, String release,String picUrl, String id ){
         Title = title;
         Year = year;
         Genre = genre;
@@ -30,14 +30,14 @@ public class MovieInfo {
         return Title;
     }
 
-    public String getYear() {
+    public int getYear() {
         return Year;
     }
 
     public String getGenre() {
         return Genre;
     }
-    public String getRuntime(){
+    public int getRuntime(){
         return Runtime;
     }
     public String getDirector(){
