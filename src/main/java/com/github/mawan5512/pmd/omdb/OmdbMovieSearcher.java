@@ -23,6 +23,18 @@ public class OmdbMovieSearcher {
         this.defaultTimeout = defaultTimeout;
     }
 
+    public PaginatedSearchResults search(String title, int year) throws IOException {
+        return new PaginatedSearchResults(this, TITLE_SEARCH.withValue(title), YEAR.withValue(year));
+    }
+
+    public PaginatedSearchResults search(String title) throws IOException {
+        return new PaginatedSearchResults(this, TITLE_SEARCH.withValue(title));
+    }
+
+    public Optional<MovieInfo> getInfo(String id) throws IOException {
+        return getInfo(ID.withValue(id));
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
     // The following 2 methods are for searching OMDb. They return a list of results.
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
