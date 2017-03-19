@@ -106,13 +106,13 @@ public class WebScraper {
         }
         return FinalSum;
     }
-    public static int Year (String x) {
+    public static String Year (String x) {
         Scanner Parse = new Scanner(x).useDelimiter(",");
         String Year = "";
         while (Parse.hasNext()) {
             if (Parse.next().contains("Year")) {
                 Year = Parse.next();
-                return Integer.parseInt(Year);
+                return Year;
             }
         }
 

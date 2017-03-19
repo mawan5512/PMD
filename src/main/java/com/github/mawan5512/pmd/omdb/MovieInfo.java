@@ -3,7 +3,7 @@ package com.github.mawan5512.pmd.omdb;
 public class MovieInfo {
 
     private final String Title;
-    private final int Year;
+    private final String Year;
     private final String Genre;
     private final int Runtime;
     private final String Director;
@@ -13,7 +13,7 @@ public class MovieInfo {
     private final String PicUrl;
     private final String ID;
 
-    public MovieInfo(String title,int year,String genre,int runtime,String director,String actors, String summary, String release,String picUrl, String id ){
+    public MovieInfo(String title,String year,String genre,int runtime,String director,String actors, String summary, String release,String picUrl, String id ){
         Title = title;
         Year = year;
         Genre = genre;
@@ -30,7 +30,7 @@ public class MovieInfo {
         return Title;
     }
 
-    public int getYear() {
+    public String getYear() {
         return Year;
     }
 
