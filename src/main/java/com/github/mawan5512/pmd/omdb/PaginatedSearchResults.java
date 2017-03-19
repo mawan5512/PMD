@@ -41,8 +41,8 @@ public class PaginatedSearchResults {
         return pageNumber >= 1 && pageNumber <= getPageCount();
     }
 
-    public OmdbSearchResults getCurrentPage() {
-        return pages.get(currentPageNumber);
+    public OmdbSearchResults getCurrentPage() throws IOException {
+        return skipTo(currentPageNumber);
     }
 
     public OmdbSearchResults prevPage() throws IOException {
