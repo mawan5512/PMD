@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 public class Add {
 
-    public static void Add(String Title, int Year, int Runtime, String Genre, String Director, String LeadActors, String ShortSummary)
+    public static void Add(String Title, String Year, int Runtime, String Genre, String Director, String LeadActors, String ShortSummary)
     {
         Connection con;
         Statement st;
