@@ -1,6 +1,11 @@
 package com.github.mawan5512.pmd.omdb;
 
-import static com.github.mawan5512.pmd.omdb.OmdbArgumentType.*;
+import com.github.mawan5512.pmd.omdb.build.OmdbArgument;
+import com.github.mawan5512.pmd.omdb.build.OmdbArgumentType;
+import com.github.mawan5512.pmd.omdb.build.OmdbUrlBuilder;
+import com.github.mawan5512.pmd.omdb.build.UrlReader;
+
+import static com.github.mawan5512.pmd.omdb.build.OmdbArgumentType.*;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -16,6 +21,18 @@ public class OmdbMovieSearcher {
     public OmdbMovieSearcher(UrlReader reader, int defaultTimeout) {
         this.reader = reader;
         this.defaultTimeout = defaultTimeout;
+    }
+
+    public PaginatedSearchResults search(String title, int year) throws IOException {
+        return new PaginatedSearchResults(this, TITLE_SEARCH.withValue(title), YEAR.withValue(year));
+    }
+
+    public PaginatedSearchResults search(String title) throws IOException {
+        return new PaginatedSearchResults(this, TITLE_SEARCH.withValue(title));
+    }
+
+    public Optional<MovieInfo> getInfo(String id) throws IOException {
+        return getInfo(ID.withValue(id));
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
