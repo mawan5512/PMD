@@ -42,7 +42,7 @@ public class WebScraper {
 
     private static OmdbSearchResult getResultFromJson(JsonObject json) {
         return new OmdbSearchResult(json.get("Title").getAsString(),
-                Integer.parseInt(json.get("Year").getAsString()),
+                json.get("Year").getAsString(),
                 json.get("imdbID").getAsString(),
                 json.get("Type").getAsString(),
                 json.get("Poster").getAsString());

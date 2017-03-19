@@ -6,12 +6,12 @@ package com.github.mawan5512.pmd.omdb;
 public class OmdbSearchResult {
 
     private final String title;
-    private final int year;
+    private final String year;
     private final String id;
     private final String type;
     private final String poster;
 
-    public OmdbSearchResult(String title,int year,String id,String type,String poster ){
+    public OmdbSearchResult(String title,String year,String id,String type,String poster ){
         this.title = title;
         this.year = year;
         this.id = id;
@@ -23,7 +23,7 @@ public class OmdbSearchResult {
         return title;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
