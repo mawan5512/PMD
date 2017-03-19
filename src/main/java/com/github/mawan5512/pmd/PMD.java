@@ -62,60 +62,43 @@ public class PMD {
 
             // keep trying until user selects a title
             outer:
-            for (int page = 1;;) {
-                OmdbSearchResults results;
-
-                if (hasYear) {
-                    results = pmd.getOmdbMovieSearcher().search(
-                            OmdbArgumentType.TITLE_SEARCH.withValue(title),
-                            OmdbArgumentType.YEAR.withValue(year),
-                            OmdbArgumentType.PAGE.withValue(page));
-                } else {
-                    results = pmd.getOmdbMovieSearcher().search(
-                            OmdbArgumentType.TITLE_SEARCH.withValue(title),
-                            OmdbArgumentType.PAGE.withValue(page));
-                }
-
-                System.out.println("You are on page " + page);
-                printResults(results);
-
-                boolean hasPrevPage = page > 1;
-                boolean hasNextPage = results.getTotalResults() > page * 10;
+            for (PaginatedSearchResults results = hasYear ? pmd.getOmdbMovieSearcher().search(title, year) : pmd.getOmdbMovieSearcher().search(title);;) {
+                System.out.printf("--------------- Page %2d/%2d ---------------%n", results.getCurrentPageNumber(), results.getPageCount());
+                printResults(results.getCurrentPage());
 
                 // keep trying until user gives a valid response
                 while (true) {
+                    System.out.println("------------------------------------------");
                     System.out.println("Choose one of the following:");
                     System.out.println("l - Flip to left page");
                     System.out.println("r - Flip to right page");
                     System.out.println("c - Choose an item on this page");
                     System.out.print("[l/r/c]: ");
                     String choice = in.nextLine();
-                    System.out.println("------------------------------------------");
 
                     switch (choice) {
                         case "l":
-                            if (hasPrevPage) {
-                                page--;
+                            if (results.hasPrevPage()) {
+                                results.prevPage();
                                 continue outer; // breaks out of inner loop
                             } else {
                                 System.out.println("No left page.");
                             }
                             break;
                         case "r":
-                            if (hasNextPage) {
-                                page++;
+                            if (results.hasNextPage()) {
+                                results.nextPage();
                                 continue outer; // breaks out of inner loop
                             } else {
                                 System.out.println("No right page.");
                             }
                             break;
                         default:
-                            int chosenTitleNumber = getInteger(in, System.out, "Enter title number: ", "Not a valid number.", 1, results.getResultList().size());
-                            String chosenTitleId = results.getResultList().get(chosenTitleNumber - 1).getId();
+                            int chosenTitleNumber = getInteger(in, System.out, "Enter title number: ", "Not a valid number.", 1, results.getCurrentPage().getResultList().size());
+                            String chosenTitleId = results.getCurrentPage().getResultList().get(chosenTitleNumber - 1).getId();
 
-                            MovieInfo info = pmd.getOmdbMovieSearcher().getInfo(
-                                    OmdbArgumentType.ID.withValue(chosenTitleId)).get();
-
+                            MovieInfo info = pmd.getOmdbMovieSearcher().getInfo(chosenTitleId).get();
+                            System.out.println("------------------------------------------");
                             System.out.println(info.getActors());
                             System.out.println(info.getDirector());
                             System.out.println(info.getGenre());
@@ -130,19 +113,14 @@ public class PMD {
                     }
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
     private static void printResults(OmdbSearchResults results) {
-        System.out.println("Result count: " + results.getTotalResults());
-        System.out.println("------------------------------------------");
         int count = 1;
         for (OmdbSearchResult result : results.getResultList()) {
-            System.out.println(count++ + ": " + result.getTitle() + " (" + result.getYear() + ")");
+            System.out.printf("%d: %s (%s)%n", count++, result.getTitle(), result.getYear());
         }
-        System.out.println("------------------------------------------");
     }
 
     /**
