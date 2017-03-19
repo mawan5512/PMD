@@ -5,7 +5,7 @@ import com.github.mawan5512.pmd.gui.HomePanel;
 import com.github.mawan5512.pmd.gui.LibraryPanel;
 import com.github.mawan5512.pmd.omdb.MovieInfo;
 import com.github.mawan5512.pmd.omdb.OmdbMovieSearcher;
-import com.github.mawan5512.pmd.omdb.RealUrlReader;
+import com.github.mawan5512.pmd.omdb.build.RealUrlReader;
 
 import javax.swing.*;
 import java.io.IOException;
