@@ -81,7 +81,7 @@ public class PaginatedSearchResults {
 
     private static OmdbArgument<?>[] addPageToArgs(int page, OmdbArgument<?>... args) {
         OmdbArgument<?>[] newArgs = Arrays.copyOf(args, args.length + 1);
-        args[args.length - 1] = OmdbArgumentType.PAGE.withValue(page);
+        newArgs[newArgs.length - 1] = OmdbArgumentType.PAGE.withValue(page);
         return newArgs;
     }
 
