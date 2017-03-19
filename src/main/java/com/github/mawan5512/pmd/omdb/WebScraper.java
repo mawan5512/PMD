@@ -1,11 +1,56 @@
 package com.github.mawan5512.pmd.omdb;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class WebScraper {
 
+    /**
+     * Given JSON search result, returns results in object
+     */
+    public static OmdbSearchResults parseResultList(String jsonText) {
+        ArrayList<OmdbSearchResult> results = new ArrayList<>();
+
+        JsonObject rootObj = new JsonParser().parse(jsonText).getAsJsonObject();
+        if (rootObj.has("Error")) {
+            if (rootObj.get("Error").getAsString().equals("Movie not found!"))
+                return new OmdbSearchResults(0, results); // empty result
+            else
+                throw new OmdbResponseException();
+        }
+
+        if (rootObj.has("Search")) {
+            JsonArray resultArray = rootObj.get("Search").getAsJsonArray();
+
+            for (JsonElement result : resultArray)
+                results.add(getResultFromJson(result.getAsJsonObject()));
+
+            return new OmdbSearchResults(
+                    Integer.parseInt(rootObj.get("totalResults").getAsString()),
+                    results);
+        } else {
+            return new OmdbSearchResults(0, results); // empty result
+        }
+    }
+
+    private static OmdbSearchResult getResultFromJson(JsonObject json) {
+        return new OmdbSearchResult(json.get("Title").getAsString(),
+                json.get("Year").getAsString(),
+                json.get("imdbID").getAsString(),
+                json.get("Type").getAsString(),
+                json.get("Poster").getAsString());
+    }
+
+    /**
+     * Given JSON single result, returns result in object
+     */
     public static Optional<MovieInfo> getInfo (String jsonText) throws IOException {
             String change = jsonText.replace("\"", "");
             String change1 = change.replace("{", "");
