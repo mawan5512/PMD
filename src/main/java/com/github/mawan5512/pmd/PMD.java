@@ -3,7 +3,6 @@ package com.github.mawan5512.pmd;
 import com.github.mawan5512.pmd.omdb.MovieInfo;
 import com.github.mawan5512.pmd.omdb.OmdbArgumentType;
 import com.github.mawan5512.pmd.database.Add;
-import com.github.mawan5512.pmd.omdb.MovieInfo;
 import com.github.mawan5512.pmd.omdb.OmdbMovieSearcher;
 import com.github.mawan5512.pmd.omdb.RealUrlReader;
 
@@ -28,14 +27,31 @@ public class PMD {
         return searcher;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         PMD pmd = new PMD();
+
+        /*
+        JFrame frame = new JFrame("PMDB");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationByPlatform(true);
+
+        JTabbedPane tp = new JTabbedPane();
+        tp.addTab("Home", new HomePanel());
+
+        tp.addTab("MyLibrary", new LibraryPanel());
+
+        frame.getContentPane().add(tp);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.pack();
+        frame.setVisible(true);
+         */
+
         try (Scanner in = new Scanner(System.in)) {
             System.out.println("Enter title:");
             String title = in.nextLine();
             int year = getPositiveInteger(in, System.out, "Enter year:", "Year must be a positive integer.");
 
-            Optional<MovieInfo> optionalInfo = pmd.getOmdbMovieSearcher().search(
+            Optional<MovieInfo> optionalInfo = pmd.getOmdbMovieSearcher().getInfo(
                     OmdbArgumentType.TITLE.withValue(title),
                     OmdbArgumentType.YEAR.withValue(year));
 
