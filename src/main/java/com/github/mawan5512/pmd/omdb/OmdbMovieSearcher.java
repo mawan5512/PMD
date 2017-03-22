@@ -1,11 +1,6 @@
 package com.github.mawan5512.pmd.omdb;
 
-import com.github.mawan5512.pmd.omdb.build.OmdbArgument;
-import com.github.mawan5512.pmd.omdb.build.OmdbArgumentType;
-import com.github.mawan5512.pmd.omdb.build.OmdbUrlBuilder;
-import com.github.mawan5512.pmd.omdb.build.UrlReader;
-
-import static com.github.mawan5512.pmd.omdb.build.OmdbArgumentType.*;
+import static com.github.mawan5512.pmd.omdb.OmdbArgumentType.*;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
