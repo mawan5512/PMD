@@ -1,4 +1,4 @@
-package com.github.mawan5512.pmd.omdb;
+package com.github.mawan5512.pmd.omdb.build;
 
 import java.util.Objects;
 import java.util.function.Function;
@@ -240,7 +240,7 @@ public class OmdbArgumentType <V> {
         return new OmdbArgument<>(this, Objects.requireNonNull(value));
     }
 
-    String getKeyString() {
+    public String getKeyString() {
         return keyString;
     }
 

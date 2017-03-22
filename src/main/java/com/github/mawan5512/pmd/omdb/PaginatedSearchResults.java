@@ -1,5 +1,8 @@
 package com.github.mawan5512.pmd.omdb;
 
+import com.github.mawan5512.pmd.omdb.build.OmdbArgument;
+import com.github.mawan5512.pmd.omdb.build.OmdbArgumentType;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;

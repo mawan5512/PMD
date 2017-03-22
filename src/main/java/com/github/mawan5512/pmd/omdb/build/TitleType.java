@@ -1,4 +1,4 @@
-package com.github.mawan5512.pmd.omdb;
+package com.github.mawan5512.pmd.omdb.build;
 
 public enum TitleType {
 

@@ -1,4 +1,4 @@
-package com.github.mawan5512.pmd.omdb;
+package com.github.mawan5512.pmd.omdb.build;
 
 import java.util.Objects;
 
@@ -20,7 +20,7 @@ public final class OmdbArgument <V> {
             throw new IllegalArgumentException("value is not valid for this type");
     }
 
-    OmdbArgumentType<V> getType() {
+    public OmdbArgumentType<V> getType() {
         return type;
     }
 

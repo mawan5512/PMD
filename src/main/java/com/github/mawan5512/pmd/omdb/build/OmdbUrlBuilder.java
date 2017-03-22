@@ -1,6 +1,4 @@
-package com.github.mawan5512.pmd.omdb;
-
-import static com.github.mawan5512.pmd.omdb.OmdbArgumentType.*;
+package com.github.mawan5512.pmd.omdb.build;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -88,31 +86,31 @@ public class OmdbUrlBuilder {
     }
 
     private void checkArgs() {
-        ensure(has(TITLE) || has(ID) || has(TITLE_SEARCH), "Must specify either title, id, or title search");
-        ensure(!(has(TITLE) && has(ID)), "Must not specify both title and id");
-        ensure(!(has(TITLE) && has(TITLE_SEARCH)), "Must not specify both title and title search");
-        ensure(!(has(ID) && has(TITLE_SEARCH)), "Must not specify both id and title search");
-        ensure(!(has(PAGE) && !has(TITLE_SEARCH)), "Must specify title search with page");
-        ensure(!((has(SEASON) || has(EPISODE)) && doesNotHaveTitleOrId()), "Must specify season or episode with title or id");
-        ensure(!(has(PLOT_LENGTH) && doesNotHaveTitleOrId()), "Must specify plot length with title or id");
-        ensure(!(has(INCLUDE_TOMATOES) && doesNotHaveTitleOrId()), "Must specify tomatoes with title or id");
-        ensure(!(has(DETAIL_TYPE) && doesNotHaveTitleOrId()), "Must specify detail type with title or id");
-        ensure(!(has(EPISODE) && !(has(SEASON))), "Must specify season with episode");
-        ensure(!(has(DETAIL_TYPE) && (!has(SEASON) || has(EPISODE))), "Must specify detail type with season and not episode");
+        ensure(has(OmdbArgumentType.TITLE) || has(OmdbArgumentType.ID) || has(OmdbArgumentType.TITLE_SEARCH), "Must specify either title, id, or title search");
+        ensure(!(has(OmdbArgumentType.TITLE) && has(OmdbArgumentType.ID)), "Must not specify both title and id");
+        ensure(!(has(OmdbArgumentType.TITLE) && has(OmdbArgumentType.TITLE_SEARCH)), "Must not specify both title and title search");
+        ensure(!(has(OmdbArgumentType.ID) && has(OmdbArgumentType.TITLE_SEARCH)), "Must not specify both id and title search");
+        ensure(!(has(OmdbArgumentType.PAGE) && !has(OmdbArgumentType.TITLE_SEARCH)), "Must specify title search with page");
+        ensure(!((has(OmdbArgumentType.SEASON) || has(OmdbArgumentType.EPISODE)) && doesNotHaveTitleOrId()), "Must specify season or episode with title or id");
+        ensure(!(has(OmdbArgumentType.PLOT_LENGTH) && doesNotHaveTitleOrId()), "Must specify plot length with title or id");
+        ensure(!(has(OmdbArgumentType.INCLUDE_TOMATOES) && doesNotHaveTitleOrId()), "Must specify tomatoes with title or id");
+        ensure(!(has(OmdbArgumentType.DETAIL_TYPE) && doesNotHaveTitleOrId()), "Must specify detail type with title or id");
+        ensure(!(has(OmdbArgumentType.EPISODE) && !(has(OmdbArgumentType.SEASON))), "Must specify season with episode");
+        ensure(!(has(OmdbArgumentType.DETAIL_TYPE) && (!has(OmdbArgumentType.SEASON) || has(OmdbArgumentType.EPISODE))), "Must specify detail type with season and not episode");
 
-        ensureNotMoreThanOne(ID);
-        ensureNotMoreThanOne(TITLE);
-        ensureNotMoreThanOne(TITLE_TYPE);
-        ensureNotMoreThanOne(YEAR);
-        ensureNotMoreThanOne(PLOT_LENGTH);
-        ensureNotMoreThanOne(DATA_TYPE);
-        ensureNotMoreThanOne(INCLUDE_TOMATOES);
-        ensureNotMoreThanOne(JSONP_CALLBACK);
-        ensureNotMoreThanOne(API_VERSION);
-        ensureNotMoreThanOne(PAGE);
-        ensureNotMoreThanOne(SEASON);
-        ensureNotMoreThanOne(EPISODE);
-        ensureNotMoreThanOne(DETAIL_TYPE);
+        ensureNotMoreThanOne(OmdbArgumentType.ID);
+        ensureNotMoreThanOne(OmdbArgumentType.TITLE);
+        ensureNotMoreThanOne(OmdbArgumentType.TITLE_TYPE);
+        ensureNotMoreThanOne(OmdbArgumentType.YEAR);
+        ensureNotMoreThanOne(OmdbArgumentType.PLOT_LENGTH);
+        ensureNotMoreThanOne(OmdbArgumentType.DATA_TYPE);
+        ensureNotMoreThanOne(OmdbArgumentType.INCLUDE_TOMATOES);
+        ensureNotMoreThanOne(OmdbArgumentType.JSONP_CALLBACK);
+        ensureNotMoreThanOne(OmdbArgumentType.API_VERSION);
+        ensureNotMoreThanOne(OmdbArgumentType.PAGE);
+        ensureNotMoreThanOne(OmdbArgumentType.SEASON);
+        ensureNotMoreThanOne(OmdbArgumentType.EPISODE);
+        ensureNotMoreThanOne(OmdbArgumentType.DETAIL_TYPE);
         //only type that can have more than one is TITLE_SEARCH
     }
 
@@ -125,7 +123,7 @@ public class OmdbUrlBuilder {
     }
 
     private boolean doesNotHaveTitleOrId() {
-        return !(has(TITLE) || has(ID));
+        return !(has(OmdbArgumentType.TITLE) || has(OmdbArgumentType.ID));
     }
 
     private void ensure(boolean b, String errorMsg) {
