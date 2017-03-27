@@ -1,9 +1,13 @@
 package com.github.mawan5512.pmd.gui;
 
+import com.github.mawan5512.pmd.PMD;
+import com.github.mawan5512.pmd.database.Add;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -25,9 +29,11 @@ public class LibraryPanel extends JPanel {
     private JButton b7;
     private JButton b8;
     private JButton b9;
+    private final PMD pmd;
 
-    public LibraryPanel()
+    public LibraryPanel(PMD pmd)
         {
+            this.pmd = pmd;
             String[]URLs = {"https://images-na.ssl-images-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
                     "https://images-na.ssl-images-amazon.com/images/M/MV5BNDg1NTU2OWEtM2UzYi00ZWRmLWEwMTktZWNjYWQ1NWM1OThjXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
                     "https://images-na.ssl-images-amazon.com/images/M/MV5BOTgxMDQwMDk0OF5BMl5BanBnXkFtZTgwNjU5OTg2NDE@._V1_SX300.jpg",
@@ -99,6 +105,12 @@ public class LibraryPanel extends JPanel {
                     {
                         numStr = JOptionPane.showInputDialog("Enter a movie title");
                         movie = numStr;
+
+                        try {
+                            pmd.addToLibrary(pmd.getOmdbMovieSearcher().getInfo(pmd.getOmdbMovieSearcher().search(numStr).getCurrentPage().getResultList().get(0).getId()).get());
+                        } catch (IOException e2) {
+                            System.err.println("search/getinfo throws IOE");
+                        }
 
                         //if(JOptionPane.YES_OPTION)
                         JOptionPane.showMessageDialog(null, "your movie has been added");
