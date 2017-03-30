@@ -6,13 +6,13 @@ import com.github.mawan5512.pmd.gui.LibraryPanel;
 import com.github.mawan5512.pmd.omdb.MovieInfo;
 import com.github.mawan5512.pmd.omdb.OmdbMovieSearcher;
 import com.github.mawan5512.pmd.omdb.build.RealUrlReader;
-import com.sun.istack.internal.logging.Logger;
 
 import javax.swing.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public class PMD {
 
@@ -82,9 +82,9 @@ public class PMD {
                     }
                 }
                 if (!gotSQLExc) {
-                    Logger.getLogger(PMD.class).severe("Database did not shut down normally.");
+                    Logger.getLogger(PMD.class.getName()).severe("Database did not shut down normally.");
                 } else {
-                    Logger.getLogger(PMD.class).info("Database shut down normally.");
+                    Logger.getLogger(PMD.class.getName()).info("Database shut down normally.");
                 }
             }
         });
